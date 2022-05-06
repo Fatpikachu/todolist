@@ -38,7 +38,7 @@ export default function Todo() {
       <div className='todo_container'>  
         <span className={todo.completed ? 'todo todo_complete' : 'todo'}>{todo.title}</span>
         <div className='todo_buttons'>
-          <input type="checkbox" defaultChecked={todo.completed} onClick={() => {toggleFinish(todo.id, todo.completed)}}/>
+          <input type="checkbox" checked={todo.completed} onClick={() => {toggleFinish(todo.id, todo.completed)}}/>
           <button className='delete_button' onClick={() => {deleteTodo(todo.id)}}><FontAwesomeIcon className='trash_can' icon={faTrashCan} /></button>
           </div>
       </div>
