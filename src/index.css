@@ -7,47 +7,51 @@
 }
 
 .App {
+  margin: 0 15%;
+  margin-top: 5%;
+  background-color: rgb(198, 225, 255);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: rgb(101,157,189);
-  background: linear-gradient(216deg, rgba(101,157,189,1) 0%, rgba(101,157,189,1) 35%, rgba(134,193,227,1) 100%);
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0,0,0,.1);
+  transition: all .5s;
+  padding: 2rem 3rem;
 }
 
 .title {
-  color: white;
-  font-family: montserrat,sans-serif;
-  font-weight: 900;
-  font-size: 3rem;
-  margin: 3rem 0;
+  margin: 1rem;
+  font-size: 2.3rem;
+  letter-spacing: .2rem;
+  font-weight: bold;
+  opacity: 0.6;
+  text-transform: uppercase;
+  opacity: 0.5;
+  color: rgb(63, 63, 63);
 }
 
 .form {
+  border-width: .3rem;
   width: 100%;
-  padding: 1rem 20%;
+  border-bottom: 1px solid rgb(171, 171, 171);
+  padding: 1rem;
   display: flex;
-  align-items: center;;
+  align-items: center;
 }
 
-input{
-  width: 100%;
+.form>input{
+  flex-grow: 1;
+  height: 2.5rem;
+  padding: 0 1rem;
   outline: none;
-  padding: 8px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 5px transparent;
-  border: 3px solid rgb(126, 126, 126);
-  border-radius: 4px;
-  background-color: rgb(234, 244, 255);
-  font-size: 1rem;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: rgb(244, 244, 244);
+  border-radius: 5px;
+  font-weight: 600;
 }
 
 input:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 5px rgb(53, 53, 53);
+ 
 }
 
 button {
@@ -55,43 +59,44 @@ button {
   outline: none;
 }
 
+/* add button */
 .add_button{
   position: relative;
   display: inline-flex;
-  width: 120px;
-  height: 50px;
-  margin: 0 15px;
+  width: 100px;
+  height: 55px;
+  margin: 0 10px;
   perspective: 1000px;
 }
 .add_button a{
-  font-size: 19px;
+  font-size: 16px;
   letter-spacing: 1px;
   transform-style: preserve-3d;
   transform: translateZ(-25px);
   transition: transform .25s;
   font-family: 'Montserrat', sans-serif;
-  
 }
+
 .add_button a:before,
 .add_button a:after{
   position: absolute;
   content: "ADD";
-  height: 50px;
-  width: 120px;
+  height: 55px;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid rgb(53, 53, 53);
+  border: 5px solid rgb(44, 29, 29, 0.2);
   box-sizing: border-box;
   border-radius: 5px;
 }
 .add_button a:before{
   color: #fff;
-  background: rgb(53, 53, 53);;
+  background: rgb(53, 53, 53, 0.5);;
   transform: rotateY(0deg) translateZ(25px);
 }
 .add_button a:after{
-  color: rgb(53, 53, 53);;
+  color: rgb(53, 53, 53, 0.5);;
   transform: rotateX(90deg) translateZ(25px);
 }
 .add_button a:hover{
@@ -100,41 +105,34 @@ button {
 
 
 .list_container {
-  display: flex;
-  flex-direction: column;
-  width: 55%;
-  justify-content: center;
-  align-items: center;;
+  padding: 2rem 1rem;
+  width: 100%;
 }
 
 .todo_container {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5rem 0;
-  
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
 }
 
 .todo {
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  width: 100%;
-  color: rgb(52, 52, 52);
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
 }
 
 .todo_complete {
-  background-color: rgb(218, 218, 218);
-  color: rgb(138, 138, 138);
+  text-decoration: line-through;
 }
 
 .todo_buttons {
   display: flex;
 }
 
-
+/* check box */
 input[type="checkbox"] {
   padding: 0;
   position: relative;
@@ -199,13 +197,50 @@ input[type="checkbox"]:checked::before {
 }
 
 
-@media only screen and (max-width: 992px) {
-  .form {
-    padding: 1rem;
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .App:hover {
+    margin-top: 4%;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.536);
+  }
+  .App:hover .title {
+    opacity: 1;
   }
 
-  .list_container {
-    width: 90%;
+  .App:hover .form>input {
+    background-color: white;
   }
 
+  .App:hover .add_button a:before,
+  .App:hover .add_button a:after{
+    border: 5px solid rgb(44, 29, 29);
+  }
+  .App:hover .add_button a:before{
+    background: rgb(53, 53, 53);
+  }
+  .App:hover .add_button a:after{
+    color: rgb(53, 53, 53);;
+  }
+}
+
+@media (max-width: 992px) {
+  .title {
+    opacity: 1;
+  }
+
+  .form>input {
+    background-color: white;
+  }
+
+  .add_button a:before,
+  .add_button a:after{
+    border: 5px solid rgb(44, 29, 29);
+  }
+  .add_button a:before{
+    background: rgb(53, 53, 53);
+  }
+  .add_button a:after{
+    color: rgb(53, 53, 53);;
+  }
 }

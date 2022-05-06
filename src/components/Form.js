@@ -20,7 +20,7 @@ export default function Form() {
   return (
     <div className='form'>
       <input type='text' placeholder='Add a new task' onChange={handleOnChange} value={title}/>
-      <span className='add_button' onClick={createTodo}><a></a></span>
+      <div className='add_button' onClick={createTodo}><a></a></div>
     </div>
   )
 }
