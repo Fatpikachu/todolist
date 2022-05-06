@@ -11,19 +11,16 @@ export default function Form() {
   const handleOnChange = (e) => {
     setTitle(e.target.value);
   }
-
-  // useEffect(() => {
-  //   console.log('the firebase: ', firebase);
-  // })
  
   const createTodo = () => {
     addDoc(todoRef, { title, completed: false, createdAt: Timestamp.fromDate(new Date()) });
+    setTitle('');
   }
 
   return (
-    <div>
+    <div className='form'>
       <input type='text' placeholder='Add a new task' onChange={handleOnChange} value={title}/>
-      <button onClick={createTodo}>Add Todo</button>
+      <span className='add_button' onClick={createTodo}><a></a></span>
     </div>
   )
 }

@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import firebase from './util/firebase';
 import Form from './components/Form';
 import Todo from './components/Todo';
+import umaru from './components/umaru.png';
 
 function App() {
   return (
     <div className="App">
-      <h1>Todo List</h1>
+      <h1 className='title'>Check List</h1>
       <Form />
       <Todo />
+      <img className='umaru' src={umaru}/>
     </div>
   );
 }

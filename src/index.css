@@ -1,13 +1,211 @@
-body {
+* { 
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: montserrat,sans-serif;
+  cursor: default;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background: rgb(101,157,189);
+  background: linear-gradient(216deg, rgba(101,157,189,1) 0%, rgba(101,157,189,1) 35%, rgba(134,193,227,1) 100%);
+}
+
+.title {
+  color: white;
+  font-family: montserrat,sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  margin: 3rem 0;
+}
+
+.form {
+  width: 100%;
+  padding: 1rem 20%;
+  display: flex;
+  align-items: center;;
+}
+
+input{
+  width: 100%;
+  outline: none;
+  padding: 8px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 5px transparent;
+  border: 3px solid rgb(126, 126, 126);
+  border-radius: 4px;
+  background-color: rgb(234, 244, 255);
+  font-size: 1rem;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 5px rgb(53, 53, 53);
+}
+
+button {
+  border: 0;
+  outline: none;
+}
+
+.add_button{
+  position: relative;
+  display: inline-flex;
+  width: 120px;
+  height: 50px;
+  margin: 0 15px;
+  perspective: 1000px;
+}
+.add_button a{
+  font-size: 19px;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform .25s;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+.add_button a:before,
+.add_button a:after{
+  position: absolute;
+  content: "ADD";
+  height: 50px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgb(53, 53, 53);
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.add_button a:before{
+  color: #fff;
+  background: rgb(53, 53, 53);;
+  transform: rotateY(0deg) translateZ(25px);
+}
+.add_button a:after{
+  color: rgb(53, 53, 53);;
+  transform: rotateX(90deg) translateZ(25px);
+}
+.add_button a:hover{
+  transform: translateZ(-25px) rotateX(-90deg);
+}
+
+
+.list_container {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  justify-content: center;
+  align-items: center;;
+}
+
+.todo_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  
+}
+
+.todo {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  color: rgb(52, 52, 52);
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.todo_complete {
+  background-color: rgb(218, 218, 218);
+  color: rgb(138, 138, 138);
+}
+
+.todo_buttons {
+  display: flex;
+}
+
+
+input[type="checkbox"] {
+  padding: 0;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 5px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+  margin: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"]:focus {
+  border-color: none;
+  box-shadow: none;
+}
+input[type="checkbox"]::before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 5px;
+    left: 9px;
+    width: 8px;
+    height: 14px;
+    border-style: solid;
+    border-color: white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+input[type="checkbox"]:checked {
+    color: white;
+    border-color: rgb(35, 135, 55);
+    background: rgb(35, 135, 55);
+}
+input[type="checkbox"]:checked::before {
+      opacity: 1;
+}
+
+.delete_button {
+  color: white;
+  background-color: rgba(215, 95, 95, 0.94);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.delete_button:hover {
+  color: rgba(215, 95, 95, 0.94);
+  background-color: white;
+}
+
+.umaru {
+  width: 8rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+
+@media only screen and (max-width: 992px) {
+  .form {
+    padding: 1rem;
+  }
+
+  .list_container {
+    width: 90%;
+  }
+
 }
