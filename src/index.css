@@ -243,4 +243,51 @@ input[type="checkbox"]:checked::before {
   .add_button a:after{
     color: rgb(53, 53, 53);;
   }
+
+  .umaru {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .App {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    padding: 10px;
+  }
+
+  .add_button{
+    width: 90px;
+    height: 45px;
+    margin: 0 5px;
+  }
+  .add_button a{
+    font-size: 12px;
+    letter-spacing: 1px;
+    transform: none;
+    transition: none;
+  }
+  
+  .add_button a:before,
+  .add_button a:after{
+    height: 45px;
+    width: 90px;
+    border: 0px;
+  }
+  .add_button a:before{
+    background: rgb(53, 53, 53);;
+  }
+  .add_button a:after{
+    color: rgb(53, 53, 53);;
+  }
+  .add_button a:hover{
+    transform: none;
+  }
 }
