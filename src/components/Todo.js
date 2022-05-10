@@ -1,50 +1,69 @@
-import React, { useState, useEffect } from 'react'
-import firebase from '../util/firebase';
-import { collection, query, onSnapshot, orderBy, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-export default function Todo() {
-  const [todos, setTodos] = useState('');
-  const todoRef = collection(firebase, "Todos");
+export default function Todo({id, title, completed, deleteTodo, toggleFinish, editTodo}) {
+  const todoRef = useRef('');
+  const [todoName, setTodoName] = useState(title);
+  const [disable, setDisable] = useState(true);
+  const [height, setHeight] = useState(0);
+
+  const enableTodo = () => {
+    todoRef.current.focus();
+    setDisable(false);
+    todoRef.current.selectionStart = todoRef.current.value.length;
+    todoRef.current.selectionEnd = todoRef.current.value.length;
+  }
+
+  const saveTodo = () => {
+    setDisable(true);
+    editTodo(id, todoName);
+  }
+
+  const handleOnChange = (e) => {
+    setTodoName(e.target.value);
+    e.target.style.height = 'inherit';
+    e.target.style.height = `${e.target.scrollHeight}px`; 
+  }
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      setDisable(true);
+      editTodo(id, todoName);
+    }
+  }
 
   useEffect(() => {
-    onSnapshot(query(todoRef, orderBy("createdAt")), (snapshot) => {
-      setTodos(snapshot.docs.map((doc) => {
-               console.log('>>>>',doc.data())
-              return {
-                ...doc.data(),
-                id: doc.id
-              }
-      }))
-    })
-  }, [])
-
-  const deleteTodo = (id) => {
-    const task = doc(firebase, 'Todos', id);
-    deleteDoc(task);
-  }
-
-  const toggleFinish = (id, finish) => {
-    const task = doc(firebase, 'Todos', id);
-    updateDoc(task, {completed: !finish});
-
-  }
+    !disable && todoRef.current.focus();
+    setHeight(todoRef.current.scrollHeight);
+}, [disable, height])
 
   return (
-    <div className='list_container'>
-    {
-      todos && todos.map((todo) => (
       <div className='todo_container'>  
-        <span className={todo.completed ? 'todo todo_complete' : 'todo'}>{todo.title}</span>
+        <textarea ref={todoRef} 
+            onBlur={saveTodo} 
+            onChange={(e) => {handleOnChange(e)}} 
+            className={completed ? 'todo todo_complete' : 'todo'} 
+            value={todoName} 
+            disabled={disable}
+            onKeyUp={handleKeyPress}
+            style={{height: height}}
+            />
         <div className='todo_buttons'>
-          <input type="checkbox" checked={todo.completed} onClick={() => {toggleFinish(todo.id, todo.completed)}}/>
-          <button className='delete_button' onClick={() => {deleteTodo(todo.id)}}><FontAwesomeIcon className='trash_can' icon={faTrashCan} /></button>
+          <input type="checkbox" 
+              checked={completed} 
+              onChange={() => {toggleFinish(id, completed)}} 
+          />
+          <button className='edit_button' 
+            onClick={() => {enableTodo(id)}}>
+            <FontAwesomeIcon className='edit_icon' icon={faEdit} />
+          </button>
+          <button className='delete_button' 
+            onClick={() => {deleteTodo(id)}}>
+            <FontAwesomeIcon className='trash_can' icon={faTrashCan} />
+          </button>
           </div>
       </div>
-      ))
-    }
-   </div>
   )
 }
 
